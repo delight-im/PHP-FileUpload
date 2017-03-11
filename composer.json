@@ -1,0 +1,16 @@
+{
+	"name": "delight-im/file-upload",
+	"description": "Simple and convenient file uploads — secure by default",
+	"require": {
+		"php": ">=5.6.0"
+	},
+	"type": "library",
+	"keywords": [ "upload", "file", "form", "input", "validation", "files" ],
+	"homepage": "https://github.com/delight-im/PHP-FileUpload",
+	"license": "MIT",
+	"autoload": {
+		"psr-4": {
+			"Delight\\FileUpload\\": "src/"
+		}
+	}
+}
