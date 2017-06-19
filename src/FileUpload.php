@@ -428,6 +428,14 @@ final class FileUpload {
 	 * @return int the size in bytes
 	 */
 	private static function determineMaximumUploadSize() {
+		$memoryLimit = self::parseIniSize(
+			\ini_get('memory_limit')
+		);
+
+		if ($memoryLimit === -1) {
+			$memoryLimit = \PHP_INT_MAX;
+		}
+
 		return \min(
 			self::parseIniSize(
 				\ini_get('upload_max_filesize')
@@ -435,9 +443,7 @@ final class FileUpload {
 			self::parseIniSize(
 				\ini_get('post_max_size')
 			),
-			self::parseIniSize(
-				\ini_get('memory_limit')
-			)
+			$memoryLimit
 		);
 	}
 
