@@ -8,6 +8,16 @@
 
 namespace Delight\FileUpload;
 
+use Delight\FileUpload\Throwable\Error;
+use Delight\FileUpload\Throwable\FileTooLargeException;
+use Delight\FileUpload\Throwable\InputNotFoundException;
+use Delight\FileUpload\Throwable\InputNotSpecifiedError;
+use Delight\FileUpload\Throwable\InvalidExtensionException;
+use Delight\FileUpload\Throwable\TempDirectoryNotFoundError;
+use Delight\FileUpload\Throwable\TempFileWriteError;
+use Delight\FileUpload\Throwable\UploadCancelledError;
+use Delight\FileUpload\Throwable\UploadCancelledException;
+
 /** Helper for simple and convenient file uploads */
 final class FileUpload extends Upload {
 
@@ -141,6 +151,64 @@ final class FileUpload extends Upload {
 	 */
 	public function getSourceInputName() {
 		return $this->sourceInputName;
+	}
+
+	public function save() {
+		if (empty($this->sourceInputName)) {
+			throw new InputNotSpecifiedError();
+		}
+
+		if (!isset($_FILES[$this->sourceInputName])) {
+			throw new InputNotFoundException();
+		}
+
+		$data = $_FILES[$this->sourceInputName];
+
+		if ($data['error'] === UPLOAD_ERR_INI_SIZE || $data['error'] === UPLOAD_ERR_FORM_SIZE) {
+			throw new FileTooLargeException();
+		}
+		elseif ($data['error'] === UPLOAD_ERR_PARTIAL) {
+			throw new UploadCancelledException();
+		}
+		elseif ($data['error'] === UPLOAD_ERR_NO_FILE) {
+			throw new InputNotFoundException();
+		}
+		elseif ($data['error'] === UPLOAD_ERR_NO_TMP_DIR) {
+			throw new TempDirectoryNotFoundError();
+		}
+		elseif ($data['error'] === UPLOAD_ERR_CANT_WRITE) {
+			throw new TempFileWriteError();
+		}
+		elseif ($data['error'] === UPLOAD_ERR_EXTENSION) {
+			throw new UploadCancelledError();
+		}
+
+		if ($data['error'] !== UPLOAD_ERR_OK) {
+			throw new Error();
+		}
+
+		if ($data['size'] > $this->getMaximumSizeInBytes()) {
+			throw new FileTooLargeException();
+		}
+
+		$originalExtension = \strtolower(
+			\pathinfo(
+				$data['name'],
+				PATHINFO_EXTENSION
+			)
+		);
+
+		if (!\in_array($originalExtension, $this->allowedExtensions, true)) {
+			throw new InvalidExtensionException();
+		}
+
+		$targetFile = $this->describeTargetFile($originalExtension);
+
+		if (!@move_uploaded_file($data['tmp_name'], $targetFile->getPath())) {
+			throw new Error();
+		}
+
+		return $targetFile;
 	}
 
 }
