@@ -22,12 +22,7 @@ require __DIR__.'/../vendor/autoload.php';
 $upload = new \Delight\FileUpload\FileUpload();
 $upload->from('my-file');
 $upload->withAllowedExtensions([ 'jpeg', 'jpg', 'png', 'gif' ]);
-$upload->withMaximumSizeInMegabytes(2);
-$upload->withTargetDirectory(__DIR__ . '/../uploads');
-
-if (mt_rand(1, 100) <= 50) {
-	$upload->withTargetFilename(\time());
-}
+configureInstance($upload);
 
 try {
 	$uploadedFile = $upload->save();
@@ -72,3 +67,12 @@ echo '      </fieldset>';
 echo '    </form>';
 echo '  </body>';
 echo '</html>';
+
+function configureInstance(\Delight\FileUpload\Upload $upload) {
+	$upload->withMaximumSizeInMegabytes(2);
+	$upload->withTargetDirectory(__DIR__ . '/../uploads');
+
+	if (mt_rand(1, 100) <= 50) {
+		$upload->withTargetFilename(\time());
+	}
+}
