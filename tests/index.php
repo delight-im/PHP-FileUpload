@@ -25,7 +25,7 @@ $upload->withAllowedExtensions([ 'jpeg', 'jpg', 'png', 'gif' ]);
 $upload->withTargetDirectory(__DIR__ . '/../uploads');
 
 if (mt_rand(1, 100) <= 50) {
-	$upload->withTargetFilename('000-my-image');
+	$upload->withTargetFilename(\time());
 }
 
 $upload->from('my-file');
