@@ -208,16 +208,6 @@ abstract class Upload {
 			throw new InputNotSpecifiedError();
 		}
 
-		if ($this->targetDirectory === null) {
-			throw new TargetDirectoryNotSpecifiedError();
-		}
-
-		$targetFilename = isset($this->targetFilename) ? $this->targetFilename : self::createRandomString();
-
-		if (!File::mayNameBeValid($targetFilename)) {
-			throw new InvalidFilenameException();
-		}
-
 		if (!isset($_FILES[$this->sourceInputName])) {
 			throw new InputNotFoundException();
 		}
@@ -262,17 +252,39 @@ abstract class Upload {
 			throw new InvalidExtensionException();
 		}
 
-		if (!$this->targetDirectory->exists() && !$this->targetDirectory->createRecursively(0755)) {
-			throw new TargetFileWriteError();
-		}
-
-		$targetFile = new File($this->targetDirectory, $targetFilename, $originalExtension);
+		$targetFile = $this->describeTargetFile($originalExtension);
 
 		if (!@move_uploaded_file($data['tmp_name'], $targetFile->getPath())) {
 			throw new Error();
 		}
 
 		return $targetFile;
+	}
+
+	/**
+	 * Returns a description of the target file
+	 *
+	 * @param string $extension the filename extension to use
+	 * @return File the description of the targe file
+	 * @throws InvalidFilenameException if the supplied filename has been invalid
+	 * @throws Error (do *not* catch)
+	 */
+	protected function describeTargetFile($extension) {
+		if ($this->targetDirectory === null) {
+			throw new TargetDirectoryNotSpecifiedError();
+		}
+
+		$targetFilename = isset($this->targetFilename) ? $this->targetFilename : self::createRandomString();
+
+		if (!File::mayNameBeValid($targetFilename)) {
+			throw new InvalidFilenameException();
+		}
+
+		if (!$this->targetDirectory->exists() && !$this->targetDirectory->createRecursively(0755)) {
+			throw new TargetFileWriteError();
+		}
+
+		return new File($this->targetDirectory, $targetFilename, $extension);
 	}
 
 	/**
