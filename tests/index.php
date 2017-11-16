@@ -19,6 +19,16 @@ header('Content-type: text/html; charset=utf-8');
 
 require __DIR__.'/../vendor/autoload.php';
 
+echo '<!DOCTYPE html>';
+echo '<html>';
+echo '  <head>';
+echo '    <meta charset="utf-8">';
+echo '    <meta name="viewport" content="width=device-width, initial-scale=1.0">';
+echo '    <title>PHP-FileUpload</title>';
+echo '  </head>';
+echo '  <body>';
+echo '    <h1>PHP-FileUpload</h1>';
+
 $upload = new \Delight\FileUpload\FileUpload();
 $upload->from('my-file');
 $upload->withAllowedExtensions([ 'jpeg', 'jpg', 'png', 'gif' ]);
@@ -45,14 +55,7 @@ catch (\Delight\FileUpload\Throwable\UploadCancelledException $e) {
 	$message = 'Upload cancelled';
 }
 
-echo '<!DOCTYPE html>';
-echo '<html>';
-echo '  <head>';
-echo '    <meta charset="utf-8">';
-echo '    <meta name="viewport" content="width=device-width, initial-scale=1.0">';
-echo '  </head>';
-echo '  <body>';
-echo '    <h1>' . $message . '</h1>';
+echo '    <h2>' . $message . '</h2>';
 echo '    <form action="" method="post" enctype="multipart/form-data">';
 echo '      <input type="hidden" name="MAX_FILE_SIZE" value="' . $upload->getMaximumSizeInBytes() . '">';
 echo '      <fieldset>';
@@ -65,6 +68,7 @@ echo '      <fieldset>';
 echo '        <button type="submit">Upload</button>';
 echo '      </fieldset>';
 echo '    </form>';
+
 echo '  </body>';
 echo '</html>';
 
