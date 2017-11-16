@@ -36,8 +36,6 @@ abstract class Upload {
 	private $targetDirectory;
 	/** @var string|null the filename to store uploaded files with (instead of an automatically generated name) */
 	private $targetFilename;
-	/** @var string|null the name of the input that is the source for the file to be uploaded */
-	private $sourceInputName;
 
 	/**
 	 * @throws Error (do *not* catch)
@@ -88,7 +86,6 @@ abstract class Upload {
 
 		$this->targetDirectory = null;
 		$this->targetFilename = null;
-		$this->sourceInputName = null;
 
 		if (!self::areFileUploadsEnabled()) {
 			throw new FileUploadsDisabledError();
@@ -296,30 +293,6 @@ abstract class Upload {
 	 */
 	public function getTargetFilename() {
 		return $this->targetFilename;
-	}
-
-	/**
-	 * Sets the name of the file input whose selected file is to be received and stored
-	 *
-	 * @param string $inputName usually the `name` attribute of the `<input type="file">` HTML element
-	 * @return static this instance for chaining
-	 */
-	public function from($inputName) {
-		$this->sourceInputName = (string) $inputName;
-
-		// remove leading and trailing whitespace
-		$this->sourceInputName = \trim($this->sourceInputName);
-
-		return $this;
-	}
-
-	/**
-	 * Returns the name of the file input whose selected file is to be received and stored
-	 *
-	 * @return string|null
-	 */
-	public function getSourceInputName() {
-		return $this->sourceInputName;
 	}
 
 	/**
