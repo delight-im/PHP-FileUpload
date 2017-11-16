@@ -20,15 +20,14 @@ header('Content-type: text/html; charset=utf-8');
 require __DIR__.'/../vendor/autoload.php';
 
 $upload = new \Delight\FileUpload\FileUpload();
-$upload->withMaximumSizeInMegabytes(2);
+$upload->from('my-file');
 $upload->withAllowedExtensions([ 'jpeg', 'jpg', 'png', 'gif' ]);
+$upload->withMaximumSizeInMegabytes(2);
 $upload->withTargetDirectory(__DIR__ . '/../uploads');
 
 if (mt_rand(1, 100) <= 50) {
 	$upload->withTargetFilename(\time());
 }
-
-$upload->from('my-file');
 
 try {
 	$uploadedFile = $upload->save();
