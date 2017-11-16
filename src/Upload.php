@@ -171,8 +171,6 @@ abstract class Upload {
 	 *
 	 * The filename should *not* include any file extension because the extension will be appended automatically
 	 *
-	 * You can control permitted file extensions via the {@see withAllowedExtensions} method
-	 *
 	 * @param string $targetFilename
 	 * @return static this instance for chaining
 	 */
