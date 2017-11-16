@@ -23,8 +23,8 @@ use Delight\FileUpload\Throwable\TotalSizeExceededError;
 use Delight\FileUpload\Throwable\UploadCancelledError;
 use Delight\FileUpload\Throwable\UploadCancelledException;
 
-/** Helper for simple and convenient file uploads */
-final class FileUpload {
+/** Abstract base class for simple and convenient uploads */
+abstract class Upload {
 
 	/** @var int the maximum size in bytes that all file uploads in a request combined may have */
 	private $maxTotalSize;
