@@ -19,7 +19,7 @@ use Delight\FileUpload\Throwable\UploadCancelledError;
 use Delight\FileUpload\Throwable\UploadCancelledException;
 
 /** Helper for simple and convenient file uploads */
-final class FileUpload extends Upload {
+final class FileUpload extends AbstractUpload {
 
 	/** @var string[] the set of permitted filename extensions (without leading dots) */
 	private $allowedExtensions;

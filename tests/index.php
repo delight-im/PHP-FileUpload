@@ -72,7 +72,7 @@ echo '    </form>';
 echo '  </body>';
 echo '</html>';
 
-function configureInstance(\Delight\FileUpload\Upload $upload) {
+function configureInstance(\Delight\FileUpload\AbstractUpload $upload) {
 	$upload->withMaximumSizeInMegabytes(2);
 	$upload->withTargetDirectory(__DIR__ . '/../uploads');
 
