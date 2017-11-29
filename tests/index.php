@@ -29,6 +29,8 @@ echo '  </head>';
 echo '  <body>';
 echo '    <h1>PHP-FileUpload</h1>';
 
+// BEGIN FILE UPLOADS
+
 $upload = new \Delight\FileUpload\FileUpload();
 $upload->from('my-file');
 $upload->withAllowedExtensions([ 'jpeg', 'jpg', 'png', 'gif' ]);
@@ -68,6 +70,8 @@ echo '      <fieldset>';
 echo '        <button type="submit">Upload</button>';
 echo '      </fieldset>';
 echo '    </form>';
+
+// END FILE UPLOADS
 
 echo '  </body>';
 echo '</html>';
