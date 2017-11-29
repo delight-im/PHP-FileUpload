@@ -164,26 +164,26 @@ final class FileUpload extends AbstractUpload {
 
 		$data = $_FILES[$this->sourceInputName];
 
-		if ($data['error'] === UPLOAD_ERR_INI_SIZE || $data['error'] === UPLOAD_ERR_FORM_SIZE) {
+		if ($data['error'] === \UPLOAD_ERR_INI_SIZE || $data['error'] === \UPLOAD_ERR_FORM_SIZE) {
 			throw new FileTooLargeException();
 		}
-		elseif ($data['error'] === UPLOAD_ERR_PARTIAL) {
+		elseif ($data['error'] === \UPLOAD_ERR_PARTIAL) {
 			throw new UploadCancelledException();
 		}
-		elseif ($data['error'] === UPLOAD_ERR_NO_FILE) {
+		elseif ($data['error'] === \UPLOAD_ERR_NO_FILE) {
 			throw new InputNotFoundException();
 		}
-		elseif ($data['error'] === UPLOAD_ERR_NO_TMP_DIR) {
+		elseif ($data['error'] === \UPLOAD_ERR_NO_TMP_DIR) {
 			throw new TempDirectoryNotFoundError();
 		}
-		elseif ($data['error'] === UPLOAD_ERR_CANT_WRITE) {
+		elseif ($data['error'] === \UPLOAD_ERR_CANT_WRITE) {
 			throw new TempFileWriteError();
 		}
-		elseif ($data['error'] === UPLOAD_ERR_EXTENSION) {
+		elseif ($data['error'] === \UPLOAD_ERR_EXTENSION) {
 			throw new UploadCancelledError();
 		}
 
-		if ($data['error'] !== UPLOAD_ERR_OK) {
+		if ($data['error'] !== \UPLOAD_ERR_OK) {
 			throw new Error();
 		}
 
@@ -194,7 +194,7 @@ final class FileUpload extends AbstractUpload {
 		$originalExtension = \strtolower(
 			\pathinfo(
 				$data['name'],
-				PATHINFO_EXTENSION
+				\PATHINFO_EXTENSION
 			)
 		);
 
