@@ -89,6 +89,61 @@ echo '    </form>';
 
 // END FILE UPLOADS
 
+// BEGIN BASE64 UPLOADS
+
+$upload = new \Delight\FileUpload\Base64Upload();
+$upload->withData(isset($_POST['my-base64']) ? $_POST['my-base64'] : null);
+$upload->withFilenameExtension('png');
+
+configureInstance($upload);
+
+try {
+	$uploadedFile = $upload->save();
+
+	$message = 'Success: ' . $uploadedFile->getFilenameWithExtension();
+}
+catch (\Delight\FileUpload\Throwable\InputNotFoundException $e) {
+	$message = 'Input not found';
+}
+catch (\Delight\FileUpload\Throwable\InvalidFilenameException $e) {
+	$message = 'Invalid filename';
+}
+catch (\Delight\FileUpload\Throwable\InvalidExtensionException $e) {
+	$message = 'Invalid extension';
+}
+catch (\Delight\FileUpload\Throwable\FileTooLargeException $e) {
+	$message = 'File too large';
+}
+catch (\Delight\FileUpload\Throwable\UploadCancelledException $e) {
+	$message = 'Upload cancelled';
+}
+
+echo '    <h2>Base64</h2>';
+echo '    <h3>' . $message . '</h3>';
+echo '    <form action="" method="post">';
+echo '      <fieldset>';
+echo '        <p>';
+echo '          <textarea id="my-base64" name="my-base64" placeholder="e.g. SGVsbG8sIFdvcmxkIQ==" style="width:100%; height:48px;"></textarea>';
+echo '        </p>';
+echo '      </fieldset>';
+echo '      <fieldset>';
+echo '        <p>';
+echo '          <strong>Filename extension:</strong> ' . ($upload->getFilenameExtension() !== null ? \strtoupper($upload->getFilenameExtension()) : '&mdash;') . '<br>';
+echo '          <strong>Maximum size (bytes):</strong> ' . $upload->getMaximumSizeInBytes() . '<br>';
+echo '          <strong>Maximum size (KB):</strong> ' . $upload->getMaximumSizeInKilobytes() . '<br>';
+echo '          <strong>Maximum size (MB):</strong> ' . $upload->getMaximumSizeInMegabytes() . '<br>';
+echo '          <strong>Maximum size (GB):</strong> ' . $upload->getMaximumSizeInGigabytes() . '<br>';
+echo '        </p>';
+echo '      </fieldset>';
+echo '      <fieldset>';
+echo '        <p>';
+echo '          <button type="submit">Upload</button>';
+echo '        </p>';
+echo '      </fieldset>';
+echo '    </form>';
+
+// END BASE64 UPLOADS
+
 echo '  </body>';
 echo '</html>';
 
