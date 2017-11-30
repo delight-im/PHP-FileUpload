@@ -42,7 +42,7 @@ configureInstance($upload);
 try {
 	$uploadedFile = $upload->save();
 
-	$message = 'Success: '.$uploadedFile->getFilenameWithExtension();
+	$message = 'Success: ' . $uploadedFile->getFilenameWithExtension();
 }
 catch (\Delight\FileUpload\Throwable\InputNotFoundException $e) {
 	$message = 'Input not found';
