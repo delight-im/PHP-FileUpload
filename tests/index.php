@@ -144,6 +144,69 @@ echo '    </form>';
 
 // END BASE64 UPLOADS
 
+// BEGIN DATA URI UPLOADS
+
+$upload = new \Delight\FileUpload\DataUriUpload();
+$upload->withUri(isset($_POST['my-uri']) ? $_POST['my-uri'] : null);
+$upload->withAllowedMimeTypesAndExtensions([
+	'image/jpeg' => 'jpg',
+	'image/png' => 'png',
+	'image/gif' => 'gif'
+]);
+configureInstance($upload);
+
+try {
+	$uploadedFile = $upload->save();
+
+	$message = 'Success: ' . $uploadedFile->getFilenameWithExtension();
+}
+catch (\Delight\FileUpload\Throwable\InputNotFoundException $e) {
+	$message = 'Input not found';
+}
+catch (\Delight\FileUpload\Throwable\InvalidFilenameException $e) {
+	$message = 'Invalid filename';
+}
+catch (\Delight\FileUpload\Throwable\InvalidExtensionException $e) {
+	$message = 'Invalid extension';
+}
+catch (\Delight\FileUpload\Throwable\FileTooLargeException $e) {
+	$message = 'File too large';
+}
+catch (\Delight\FileUpload\Throwable\UploadCancelledException $e) {
+	$message = 'Upload cancelled';
+}
+
+echo '    <h2>Data URI</h2>';
+echo '    <h3>' . $message . '</h3>';
+echo '    <form action="" method="post">';
+echo '      <fieldset>';
+echo '        <p>';
+echo '          <textarea id="my-uri" name="my-uri" placeholder="e.g. data:text/plain;base64,SGVsbG8sIFdvcmxkIQ==" style="width:100%; height:48px;"></textarea>';
+echo '        </p>';
+echo '      </fieldset>';
+echo '      <fieldset>';
+echo '        <p>';
+echo '          <strong>MIME types (count):</strong> ' . \count($upload->getAllowedMimeTypesAsArray()) . '<br>';
+echo '          <strong>MIME types (machines):</strong> ' . $upload->getAllowedMimeTypesAsMachineString() . '<br>';
+echo '          <strong>MIME types (humans):</strong> ' . $upload->getAllowedMimeTypesAsHumanString(' or ') . '<br>';
+echo '          <strong>Filename extensions (count):</strong> ' . \count($upload->getAllowedExtensionsAsArray()) . '<br>';
+echo '          <strong>Filename extensions (machines):</strong> ' . $upload->getAllowedExtensionsAsMachineString() . '<br>';
+echo '          <strong>Filename extensions (humans):</strong> ' . $upload->getAllowedExtensionsAsHumanString(' or ') . '<br>';
+echo '          <strong>Maximum size (bytes):</strong> ' . $upload->getMaximumSizeInBytes() . '<br>';
+echo '          <strong>Maximum size (KB):</strong> ' . $upload->getMaximumSizeInKilobytes() . '<br>';
+echo '          <strong>Maximum size (MB):</strong> ' . $upload->getMaximumSizeInMegabytes() . '<br>';
+echo '          <strong>Maximum size (GB):</strong> ' . $upload->getMaximumSizeInGigabytes() . '<br>';
+echo '        </p>';
+echo '      </fieldset>';
+echo '      <fieldset>';
+echo '        <p>';
+echo '          <button type="submit">Upload</button>';
+echo '        </p>';
+echo '      </fieldset>';
+echo '    </form>';
+
+// END DATA URI UPLOADS
+
 echo '  </body>';
 echo '</html>';
 
