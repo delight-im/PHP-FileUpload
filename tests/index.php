@@ -65,12 +65,16 @@ echo '    <h3>' . $message . '</h3>';
 echo '    <form action="" method="post" enctype="multipart/form-data">';
 echo '      <input type="hidden" name="MAX_FILE_SIZE" value="' . $upload->getMaximumSizeInBytes() . '">';
 echo '      <fieldset>';
-echo '        <input type="file" id="my-file" name="my-file">';
+echo '        <p>';
+echo '          <input type="file" id="my-file" name="my-file">';
+echo '        </p>';
 echo '        <p>Supported formats: ' . $upload->getAllowedExtensionsAsHumanString(' and ') . '</p>';
 echo '        <p>Maximum size: ' . $upload->getMaximumSizeInKilobytes() . ' KB</p>';
 echo '      </fieldset>';
 echo '      <fieldset>';
-echo '        <button type="submit">Upload</button>';
+echo '        <p>';
+echo '          <button type="submit">Upload</button>';
+echo '        </p>';
 echo '      </fieldset>';
 echo '    </form>';
 
