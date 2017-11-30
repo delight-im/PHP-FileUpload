@@ -60,7 +60,8 @@ catch (\Delight\FileUpload\Throwable\UploadCancelledException $e) {
 	$message = 'Upload cancelled';
 }
 
-echo '    <h2>' . $message . '</h2>';
+echo '    <h2>File</h2>';
+echo '    <h3>' . $message . '</h3>';
 echo '    <form action="" method="post" enctype="multipart/form-data">';
 echo '      <input type="hidden" name="MAX_FILE_SIZE" value="' . $upload->getMaximumSizeInBytes() . '">';
 echo '      <fieldset>';
