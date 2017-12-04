@@ -34,6 +34,8 @@ Simple and convenient file uploads — secure by default
 
 ## Usage
 
+### File uploads
+
 ```php
 $upload = new \Delight\FileUpload\FileUpload();
 $upload->withTargetDirectory('/my-app/users/' . $userId . '/avatars');
@@ -61,7 +63,7 @@ catch (\Delight\FileUpload\Throwable\UploadCancelledException $e) {
 }
 ```
 
-### Limiting the maximum permitted file size
+#### Limiting the maximum permitted file size
 
 ```php
 $upload->withMaximumSizeInBytes(4194304);
@@ -75,7 +77,7 @@ $upload->withMaximumSizeInKilobytes(4096);
 $upload->withMaximumSizeInMegabytes(4);
 ```
 
-### Reading the maximum permitted file size
+#### Reading the maximum permitted file size
 
 ```php
 // e.g. int(4194304)
@@ -92,13 +94,13 @@ $upload->getMaximumSizeInKilobytes();
 $upload->getMaximumSizeInMegabytes();
 ```
 
-### Restricting the allowed file types or extensions
+#### Restricting the allowed file types or extensions
 
 ```php
 $upload->withAllowedExtensions([ 'jpeg', 'jpg', 'png', 'gif' ]);
 ```
 
-### Reading the allowed file types or extensions
+#### Reading the allowed file types or extensions
 
 ```php
 // e.g. array(4) { [0]=> string(4) "jpeg" [1]=> string(3) "jpg" [2]=> string(3) "png" [3]=> string(3) "gif" }
@@ -120,14 +122,14 @@ $upload->getAllowedExtensionsAsHumanString();
 $upload->getAllowedExtensionsAsHumanString(' or ');
 ```
 
-### Reading the target directory
+#### Reading the target directory
 
 ```php
 // e.g. string(24) "/my-app/users/42/avatars"
 $upload->getTargetDirectory();
 ```
 
-### Defining the target filename
+#### Defining the target filename
 
 ```php
 $upload->withTargetFilename('my-picture');
@@ -135,14 +137,14 @@ $upload->withTargetFilename('my-picture');
 
 **Note:** By default, a random filename will be used, which is sufficient (and desired) in many cases.
 
-### Reading the target filename
+#### Reading the target filename
 
 ```php
 // e.g. string(10) "my-picture"
 $upload->getTargetFilename();
 ```
 
-### Reading the name of the input field
+#### Reading the name of the input field
 
 ```php
 // e.g. string(13) "my-input-name"
