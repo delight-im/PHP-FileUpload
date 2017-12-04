@@ -34,6 +34,34 @@ Simple and convenient file uploads — secure by default
 
 ## Usage
 
+ * [File uploads](#file-uploads)
+   * [Limiting the maximum permitted file size](#limiting-the-maximum-permitted-file-size)
+   * [Reading the maximum permitted file size](#reading-the-maximum-permitted-file-size)
+   * [Restricting the allowed file types or extensions](#restricting-the-allowed-file-types-or-extensions)
+   * [Reading the allowed file types or extensions](#reading-the-allowed-file-types-or-extensions)
+   * [Reading the target directory](#reading-the-target-directory)
+   * [Defining the target filename](#defining-the-target-filename)
+   * [Reading the target filename](#reading-the-target-filename)
+   * [Reading the name of the input field](#reading-the-name-of-the-input-field)
+ * [Base64 uploads](#base64-uploads)
+   * [Limiting the maximum permitted file size](#limiting-the-maximum-permitted-file-size-1)
+   * [Reading the maximum permitted file size](#reading-the-maximum-permitted-file-size-1)
+   * [Defining the filename extension](#defining-the-filename-extension)
+   * [Reading the filename extension](#reading-the-filename-extension)
+   * [Reading the target directory](#reading-the-target-directory-1)
+   * [Defining the target filename](#defining-the-target-filename-1)
+   * [Reading the target filename](#reading-the-target-filename-1)
+   * [Reading the Base64 data](#reading-the-base64-data)
+ * [Data URI uploads](#data-uri-uploads)
+   * [Limiting the maximum permitted file size](#limiting-the-maximum-permitted-file-size-2)
+   * [Reading the maximum permitted file size](#reading-the-maximum-permitted-file-size-2)
+   * [Restricting the allowed MIME types and extensions](#restricting-the-allowed-mime-types-and-extensions)
+   * [Reading the allowed MIME types and extensions](#reading-the-allowed-mime-types-and-extensions)
+   * [Reading the target directory](#reading-the-target-directory-2)
+   * [Defining the target filename](#defining-the-target-filename-2)
+   * [Reading the target filename](#reading-the-target-filename-2)
+   * [Reading the data URI](#reading-the-data-uri)
+
 ### File uploads
 
 ```php
