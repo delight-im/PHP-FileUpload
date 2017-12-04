@@ -255,6 +255,149 @@ $upload->getTargetFilename();
 $upload->getData();
 ```
 
+### Data URI uploads
+
+```php
+$upload = new \Delight\FileUpload\DataUriUpload();
+$upload->withTargetDirectory('/my-app/users/' . $userId . '/avatars');
+$upload->withUri($_POST['my-data-uri']);
+
+try {
+    $uploadedFile = $upload->save();
+
+    // success: $uploadedFile->getFilenameWithExtension()
+}
+catch (\Delight\FileUpload\Throwable\InputNotFoundException $e) {
+    // input not found
+}
+catch (\Delight\FileUpload\Throwable\InvalidFilenameException $e) {
+    // invalid filename
+}
+catch (\Delight\FileUpload\Throwable\InvalidExtensionException $e) {
+    // invalid extension
+}
+catch (\Delight\FileUpload\Throwable\FileTooLargeException $e) {
+    // file too large
+}
+catch (\Delight\FileUpload\Throwable\UploadCancelledException $e) {
+    // upload cancelled
+}
+```
+
+#### Limiting the maximum permitted file size
+
+```php
+$upload->withMaximumSizeInBytes(4194304);
+
+// or
+
+$upload->withMaximumSizeInKilobytes(4096);
+
+// or
+
+$upload->withMaximumSizeInMegabytes(4);
+```
+
+#### Reading the maximum permitted file size
+
+```php
+// e.g. int(4194304)
+$upload->getMaximumSizeInBytes();
+
+// or
+
+// e.g. int(4096)
+$upload->getMaximumSizeInKilobytes();
+
+// or
+
+// e.g. int(4)
+$upload->getMaximumSizeInMegabytes();
+```
+
+#### Restricting the allowed MIME types and extensions
+
+```php
+$upload->withAllowedMimeTypesAndExtensions([
+    'image/jpeg' => 'jpg',
+    'image/png' => 'png',
+    'image/gif' => 'gif'
+]);
+```
+
+**Note:** By default, a set of MIME types is used that is relatively safe for PHP applications and common on the web. This may be sufficient for some use cases.
+
+#### Reading the allowed MIME types and extensions
+
+```php
+// e.g. array(3) { [0]=> string(10) "image/jpeg" [1]=> string(9) "image/png" [2]=> string(9) "image/gif" }
+$upload->getAllowedMimeTypesAsArray();
+
+// or
+
+// e.g. string(30) "image/jpeg,image/png,image/gif"
+$upload->getAllowedMimeTypesAsMachineString();
+
+// or
+
+// e.g. string(32) "image/jpeg, image/png, image/gif"
+$upload->getAllowedMimeTypesAsHumanString();
+
+// or
+
+// e.g. string(34) "image/jpeg, image/png or image/gif"
+$upload->getAllowedMimeTypesAsHumanString(' or ');
+
+// or
+
+// e.g. array(3) { [0]=> string(3) "jpg" [1]=> string(3) "png" [2]=> string(3) "gif" }
+$upload->getAllowedExtensionsAsArray();
+
+// or
+
+// e.g. string(11) "jpg,png,gif"
+$upload->getAllowedExtensionsAsMachineString();
+
+// or
+
+// e.g. string(13) "JPG, PNG, GIF"
+$upload->getAllowedExtensionsAsHumanString();
+
+// or
+
+// e.g. string(15) "JPG, PNG or GIF"
+$upload->getAllowedExtensionsAsHumanString(' or ');
+```
+
+#### Reading the target directory
+
+```php
+// e.g. string(24) "/my-app/users/42/avatars"
+$upload->getTargetDirectory();
+```
+
+#### Defining the target filename
+
+```php
+$upload->withTargetFilename('my-picture');
+```
+
+**Note:** By default, a random filename will be used, which is sufficient (and desired) in many cases.
+
+#### Reading the target filename
+
+```php
+// e.g. string(10) "my-picture"
+$upload->getTargetFilename();
+```
+
+#### Reading the data URI
+
+```php
+// e.g. string(43) "data:text/plain;base64,SGVsbG8sIFdvcmxkIQ=="
+$upload->getUri();
+```
+
 ## Contributing
 
 All contributions are welcome! If you wish to contribute, please create an issue first so that your feature, problem or question can be discussed.
