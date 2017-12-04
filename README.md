@@ -100,6 +100,8 @@ $upload->getMaximumSizeInMegabytes();
 $upload->withAllowedExtensions([ 'jpeg', 'jpg', 'png', 'gif' ]);
 ```
 
+**Note:** By default, a set of filename extensions is used that is relatively safe for PHP applications and common on the web. This may be sufficient for some use cases.
+
 #### Reading the allowed file types or extensions
 
 ```php
