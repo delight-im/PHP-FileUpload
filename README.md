@@ -151,6 +151,110 @@ $upload->getTargetFilename();
 $upload->getSourceInputName();
 ```
 
+### Base64 uploads
+
+```php
+$upload = new \Delight\FileUpload\Base64Upload();
+$upload->withTargetDirectory('/my-app/users/' . $userId . '/avatars');
+$upload->withData($_POST['my-base64']);
+
+try {
+    $uploadedFile = $upload->save();
+
+    // success: $uploadedFile->getFilenameWithExtension()
+}
+catch (\Delight\FileUpload\Throwable\InputNotFoundException $e) {
+    // input not found
+}
+catch (\Delight\FileUpload\Throwable\InvalidFilenameException $e) {
+    // invalid filename
+}
+catch (\Delight\FileUpload\Throwable\InvalidExtensionException $e) {
+    // invalid extension
+}
+catch (\Delight\FileUpload\Throwable\FileTooLargeException $e) {
+    // file too large
+}
+catch (\Delight\FileUpload\Throwable\UploadCancelledException $e) {
+    // upload cancelled
+}
+```
+
+#### Limiting the maximum permitted file size
+
+```php
+$upload->withMaximumSizeInBytes(4194304);
+
+// or
+
+$upload->withMaximumSizeInKilobytes(4096);
+
+// or
+
+$upload->withMaximumSizeInMegabytes(4);
+```
+
+#### Reading the maximum permitted file size
+
+```php
+// e.g. int(4194304)
+$upload->getMaximumSizeInBytes();
+
+// or
+
+// e.g. int(4096)
+$upload->getMaximumSizeInKilobytes();
+
+// or
+
+// e.g. int(4)
+$upload->getMaximumSizeInMegabytes();
+```
+
+#### Defining the filename extension
+
+```php
+$upload->withFilenameExtension('png');
+```
+
+**Note:** By default, the filename extension `bin` for arbitrary (binary) data will be used, which may be sufficient in some cases.
+
+#### Reading the filename extension
+
+```php
+// e.g. string(3) "png"
+$upload->getFilenameExtension();
+```
+
+#### Reading the target directory
+
+```php
+// e.g. string(24) "/my-app/users/42/avatars"
+$upload->getTargetDirectory();
+```
+
+#### Defining the target filename
+
+```php
+$upload->withTargetFilename('my-picture');
+```
+
+**Note:** By default, a random filename will be used, which is sufficient (and desired) in many cases.
+
+#### Reading the target filename
+
+```php
+// e.g. string(10) "my-picture"
+$upload->getTargetFilename();
+```
+
+#### Reading the Base64 data
+
+```php
+// e.g. string(20) "SGVsbG8sIFdvcmxkIQ=="
+$upload->getData();
+```
+
 ## Contributing
 
 All contributions are welcome! If you wish to contribute, please create an issue first so that your feature, problem or question can be discussed.
