@@ -81,6 +81,30 @@ final class Directory {
 		return $this->createInternal(true, $mode);
 	}
 
+	/**
+	 * Attempts to delete the directory including any contents recursively
+	 */
+	public function deleteRecursively() {
+		if ($this->exists()) {
+			$entries = @\scandir($this->path);
+
+			foreach ($entries as $entry) {
+				if ($entry !== '.' && $entry !== '..') {
+					$entryPath = $this->path . '/' . $entry;
+
+					if (@\is_dir($entryPath)) {
+						$this->deleteRecursively($entryPath);
+					}
+					else {
+						@\unlink($entryPath);
+					}
+				}
+			}
+
+			@\rmdir($this->path);
+		}
+	}
+
 	public function __toString() {
 		return $this->getPath();
 	}
