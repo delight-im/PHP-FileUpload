@@ -43,6 +43,7 @@ Simple and convenient file uploads — secure by default
    * [Defining the target filename](#defining-the-target-filename)
    * [Reading the target filename](#reading-the-target-filename)
    * [Reading the name of the input field](#reading-the-name-of-the-input-field)
+   * [Reading the name of the original file](#reading-the-name-of-the-original-file)
  * [Base64 uploads](#base64-uploads)
    * [Limiting the maximum permitted file size](#limiting-the-maximum-permitted-file-size-1)
    * [Reading the maximum permitted file size](#reading-the-maximum-permitted-file-size-1)
@@ -179,6 +180,13 @@ $upload->getTargetFilename();
 ```php
 // e.g. string(13) "my-input-name"
 $upload->getSourceInputName();
+```
+
+#### Reading the name of the original file
+
+```php
+// e.g. string(13) "my-original-picture.jpg"
+$upload->getSourceFileName();
 ```
 
 ### Base64 uploads
