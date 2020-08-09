@@ -72,7 +72,14 @@ $upload->from('my-input-name');
 try {
     $uploadedFile = $upload->save();
 
-    // success: $uploadedFile->getFilenameWithExtension()
+    // success
+
+    // $uploadedFile->getFilenameWithExtension()
+    // $uploadedFile->getFilename()
+    // $uploadedFile->getExtension()
+    // $uploadedFile->getDirectory()
+    // $uploadedFile->getPath()
+    // $uploadedFile->getCanonicalPath()
 }
 catch (\Delight\FileUpload\Throwable\InputNotFoundException $e) {
     // input not found
@@ -191,7 +198,14 @@ $upload->withData($_POST['my-base64']);
 try {
     $uploadedFile = $upload->save();
 
-    // success: $uploadedFile->getFilenameWithExtension()
+    // success
+
+    // $uploadedFile->getFilenameWithExtension()
+    // $uploadedFile->getFilename()
+    // $uploadedFile->getExtension()
+    // $uploadedFile->getDirectory()
+    // $uploadedFile->getPath()
+    // $uploadedFile->getCanonicalPath()
 }
 catch (\Delight\FileUpload\Throwable\InputNotFoundException $e) {
     // input not found
@@ -297,7 +311,14 @@ $upload->withUri($_POST['my-data-uri']);
 try {
     $uploadedFile = $upload->save();
 
-    // success: $uploadedFile->getFilenameWithExtension()
+    // success
+
+    // $uploadedFile->getFilenameWithExtension()
+    // $uploadedFile->getFilename()
+    // $uploadedFile->getExtension()
+    // $uploadedFile->getDirectory()
+    // $uploadedFile->getPath()
+    // $uploadedFile->getCanonicalPath()
 }
 catch (\Delight\FileUpload\Throwable\InputNotFoundException $e) {
     // input not found
