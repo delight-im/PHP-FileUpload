@@ -247,7 +247,7 @@ $upload->getMaximumSizeInMegabytes();
 $upload->withFilenameExtension('png');
 ```
 
-**Note:** By default, the filename extension `bin` for arbitrary (binary) data will be used, which may be sufficient in some cases.
+**Note:** This defines the filename extension of the file *to be uploaded*, which is a property of the `FileUpload` instance. It does *not* change the extension of any file *already* uploaded, which would be represented in a `File` instance. By default, the filename extension `bin` for arbitrary (binary) data will be used, which may be sufficient in some cases.
 
 #### Reading the filename extension
 
@@ -255,6 +255,8 @@ $upload->withFilenameExtension('png');
 // e.g. string(3) "png"
 $upload->getFilenameExtension();
 ```
+
+**Note:** This retrieves the filename extension of the file *to be uploaded*, which is a property of the `FileUpload` instance. It does *not* read the extension of any file *already* uploaded, which would be represented in a `File` instance.
 
 #### Reading the target directory
 
