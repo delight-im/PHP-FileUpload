@@ -25,6 +25,8 @@ final class FileUpload extends AbstractUpload {
 	private $allowedExtensions;
 	/** @var string|null the name of the input that is the source for the file to be uploaded */
 	private $sourceInputName;
+	/** @var string|null the name of the file that is going to be uploaded */
+	private $sourceFileName;
 
 	public function __construct() {
 		parent::__construct();
@@ -153,6 +155,15 @@ final class FileUpload extends AbstractUpload {
 		return $this->sourceInputName;
 	}
 
+	/**
+	 * Returns the original name of the file that is going to be uploaded
+	 *
+	 * @return string|null
+	 */
+	public function getSourceFileName() {
+		return $this->sourceFileName;
+	}
+
 	public function save() {
 		if (empty($this->sourceInputName)) {
 			throw new InputNotSpecifiedError();
@@ -163,6 +174,7 @@ final class FileUpload extends AbstractUpload {
 		}
 
 		$data = $_FILES[$this->sourceInputName];
+		$this->sourceFileName = $data['name'];
 
 		if ($data['error'] === \UPLOAD_ERR_INI_SIZE || $data['error'] === \UPLOAD_ERR_FORM_SIZE) {
 			throw new FileTooLargeException();
