@@ -83,14 +83,16 @@ final class Directory {
 
 	/**
 	 * Attempts to delete the directory including any contents recursively
+	 *
+	 * @param string the path of the directory to be removed
 	 */
-	public function deleteRecursively() {
-		if ($this->exists()) {
-			$entries = @\scandir($this->path);
+	public function deleteRecursively($path) {
+		if ( is_dir($path) ) {
+			$entries = @\scandir($path);
 
 			foreach ($entries as $entry) {
 				if ($entry !== '.' && $entry !== '..') {
-					$entryPath = $this->path . '/' . $entry;
+					$entryPath = $path . '/' . $entry;
 
 					if (@\is_dir($entryPath)) {
 						$this->deleteRecursively($entryPath);
@@ -101,7 +103,7 @@ final class Directory {
 				}
 			}
 
-			@\rmdir($this->path);
+			@\rmdir($path);
 		}
 	}
 
