@@ -73,7 +73,14 @@ $upload->from('my-input-name');
 try {
     $uploadedFile = $upload->save();
 
-    // success: $uploadedFile->getFilenameWithExtension()
+    // success
+
+    // $uploadedFile->getFilenameWithExtension()
+    // $uploadedFile->getFilename()
+    // $uploadedFile->getExtension()
+    // $uploadedFile->getDirectory()
+    // $uploadedFile->getPath()
+    // $uploadedFile->getCanonicalPath()
 }
 catch (\Delight\FileUpload\Throwable\InputNotFoundException $e) {
     // input not found
@@ -199,7 +206,14 @@ $upload->withData($_POST['my-base64']);
 try {
     $uploadedFile = $upload->save();
 
-    // success: $uploadedFile->getFilenameWithExtension()
+    // success
+
+    // $uploadedFile->getFilenameWithExtension()
+    // $uploadedFile->getFilename()
+    // $uploadedFile->getExtension()
+    // $uploadedFile->getDirectory()
+    // $uploadedFile->getPath()
+    // $uploadedFile->getCanonicalPath()
 }
 catch (\Delight\FileUpload\Throwable\InputNotFoundException $e) {
     // input not found
@@ -255,7 +269,7 @@ $upload->getMaximumSizeInMegabytes();
 $upload->withFilenameExtension('png');
 ```
 
-**Note:** By default, the filename extension `bin` for arbitrary (binary) data will be used, which may be sufficient in some cases.
+**Note:** This defines the filename extension of the file *to be uploaded*, which is a property of the `FileUpload` instance. It does *not* change the extension of any file *already* uploaded, which would be represented in a `File` instance. By default, the filename extension `bin` for arbitrary (binary) data will be used, which may be sufficient in some cases.
 
 #### Reading the filename extension
 
@@ -263,6 +277,8 @@ $upload->withFilenameExtension('png');
 // e.g. string(3) "png"
 $upload->getFilenameExtension();
 ```
+
+**Note:** This retrieves the filename extension of the file *to be uploaded*, which is a property of the `FileUpload` instance. It does *not* read the extension of any file *already* uploaded, which would be represented in a `File` instance.
 
 #### Reading the target directory
 
@@ -303,7 +319,14 @@ $upload->withUri($_POST['my-data-uri']);
 try {
     $uploadedFile = $upload->save();
 
-    // success: $uploadedFile->getFilenameWithExtension()
+    // success
+
+    // $uploadedFile->getFilenameWithExtension()
+    // $uploadedFile->getFilename()
+    // $uploadedFile->getExtension()
+    // $uploadedFile->getDirectory()
+    // $uploadedFile->getPath()
+    // $uploadedFile->getCanonicalPath()
 }
 catch (\Delight\FileUpload\Throwable\InputNotFoundException $e) {
     // input not found
