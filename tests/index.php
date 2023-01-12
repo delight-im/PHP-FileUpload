@@ -1,8 +1,8 @@
 <?php
 
 /*
- * PHP-FileUpload (https://github.com/delight-im/PHP-FileUpload)
- * Copyright (c) delight.im (https://www.delight.im/)
+ * PHP-FileUpload (https://github.com/oihso/PHP-FileUpload)
+  *
  * Licensed under the MIT License (https://opensource.org/licenses/MIT)
  */
 
@@ -34,7 +34,7 @@ echo '    <h1>PHP-FileUpload</h1>';
 
 // BEGIN FILE UPLOADS
 
-$upload = new \Delight\FileUpload\FileUpload();
+$upload = new \Oihso\FileUpload\FileUpload();
 $upload->from('my-file');
 $upload->withAllowedExtensions([ 'jpeg', 'jpg', 'png', 'gif' ]);
 configureInstance($upload);
@@ -44,19 +44,19 @@ try {
 
 	$message = 'Success: ' . $uploadedFile->getFilenameWithExtension();
 }
-catch (\Delight\FileUpload\Throwable\InputNotFoundException $e) {
+catch (\Oihso\FileUpload\Throwable\InputNotFoundException $e) {
 	$message = 'Input not found';
 }
-catch (\Delight\FileUpload\Throwable\InvalidFilenameException $e) {
+catch (\Oihso\FileUpload\Throwable\InvalidFilenameException $e) {
 	$message = 'Invalid filename';
 }
-catch (\Delight\FileUpload\Throwable\InvalidExtensionException $e) {
+catch (\Oihso\FileUpload\Throwable\InvalidExtensionException $e) {
 	$message = 'Invalid extension';
 }
-catch (\Delight\FileUpload\Throwable\FileTooLargeException $e) {
+catch (\Oihso\FileUpload\Throwable\FileTooLargeException $e) {
 	$message = 'File too large';
 }
-catch (\Delight\FileUpload\Throwable\UploadCancelledException $e) {
+catch (\Oihso\FileUpload\Throwable\UploadCancelledException $e) {
 	$message = 'Upload cancelled';
 }
 
@@ -91,7 +91,7 @@ echo '    </form>';
 
 // BEGIN BASE64 UPLOADS
 
-$upload = new \Delight\FileUpload\Base64Upload();
+$upload = new \Oihso\FileUpload\Base64Upload();
 $upload->withData(isset($_POST['my-base64']) ? $_POST['my-base64'] : null);
 $upload->withFilenameExtension('png');
 
@@ -102,19 +102,19 @@ try {
 
 	$message = 'Success: ' . $uploadedFile->getFilenameWithExtension();
 }
-catch (\Delight\FileUpload\Throwable\InputNotFoundException $e) {
+catch (\Oihso\FileUpload\Throwable\InputNotFoundException $e) {
 	$message = 'Input not found';
 }
-catch (\Delight\FileUpload\Throwable\InvalidFilenameException $e) {
+catch (\Oihso\FileUpload\Throwable\InvalidFilenameException $e) {
 	$message = 'Invalid filename';
 }
-catch (\Delight\FileUpload\Throwable\InvalidExtensionException $e) {
+catch (\Oihso\FileUpload\Throwable\InvalidExtensionException $e) {
 	$message = 'Invalid extension';
 }
-catch (\Delight\FileUpload\Throwable\FileTooLargeException $e) {
+catch (\Oihso\FileUpload\Throwable\FileTooLargeException $e) {
 	$message = 'File too large';
 }
-catch (\Delight\FileUpload\Throwable\UploadCancelledException $e) {
+catch (\Oihso\FileUpload\Throwable\UploadCancelledException $e) {
 	$message = 'Upload cancelled';
 }
 
@@ -146,7 +146,7 @@ echo '    </form>';
 
 // BEGIN DATA URI UPLOADS
 
-$upload = new \Delight\FileUpload\DataUriUpload();
+$upload = new \Oihso\FileUpload\DataUriUpload();
 $upload->withUri(isset($_POST['my-uri']) ? $_POST['my-uri'] : null);
 $upload->withAllowedMimeTypesAndExtensions([
 	'image/jpeg' => 'jpg',
@@ -160,19 +160,19 @@ try {
 
 	$message = 'Success: ' . $uploadedFile->getFilenameWithExtension();
 }
-catch (\Delight\FileUpload\Throwable\InputNotFoundException $e) {
+catch (\Oihso\FileUpload\Throwable\InputNotFoundException $e) {
 	$message = 'Input not found';
 }
-catch (\Delight\FileUpload\Throwable\InvalidFilenameException $e) {
+catch (\Oihso\FileUpload\Throwable\InvalidFilenameException $e) {
 	$message = 'Invalid filename';
 }
-catch (\Delight\FileUpload\Throwable\InvalidExtensionException $e) {
+catch (\Oihso\FileUpload\Throwable\InvalidExtensionException $e) {
 	$message = 'Invalid extension';
 }
-catch (\Delight\FileUpload\Throwable\FileTooLargeException $e) {
+catch (\Oihso\FileUpload\Throwable\FileTooLargeException $e) {
 	$message = 'File too large';
 }
-catch (\Delight\FileUpload\Throwable\UploadCancelledException $e) {
+catch (\Oihso\FileUpload\Throwable\UploadCancelledException $e) {
 	$message = 'Upload cancelled';
 }
 
@@ -210,7 +210,7 @@ echo '    </form>';
 echo '  </body>';
 echo '</html>';
 
-function configureInstance(\Delight\FileUpload\AbstractUpload $upload) {
+function configureInstance(\Oihso\FileUpload\AbstractUpload $upload) {
 	$upload->withMaximumSizeInMegabytes(2);
 	$upload->withTargetDirectory(__DIR__ . '/../uploads');
 

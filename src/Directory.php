@@ -1,12 +1,12 @@
 <?php
 
 /*
- * PHP-FileUpload (https://github.com/delight-im/PHP-FileUpload)
- * Copyright (c) delight.im (https://www.delight.im/)
+ * PHP-FileUpload (https://github.com/oihso/PHP-FileUpload)
+  *
  * Licensed under the MIT License (https://opensource.org/licenses/MIT)
  */
 
-namespace Delight\FileUpload;
+namespace Oihso\FileUpload;
 
 /** Represents a directory or folder in the file system */
 final class Directory {

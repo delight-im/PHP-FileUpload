@@ -1,22 +1,22 @@
 <?php
 
 /*
- * PHP-FileUpload (https://github.com/delight-im/PHP-FileUpload)
- * Copyright (c) delight.im (https://www.delight.im/)
+ * PHP-FileUpload (https://github.com/oihso/PHP-FileUpload)
+  *
  * Licensed under the MIT License (https://opensource.org/licenses/MIT)
  */
 
-namespace Delight\FileUpload;
+namespace Oihso\FileUpload;
 
-use Delight\FileUpload\Throwable\Error;
-use Delight\FileUpload\Throwable\FileTooLargeException;
-use Delight\FileUpload\Throwable\InputNotFoundException;
-use Delight\FileUpload\Throwable\InputNotSpecifiedError;
-use Delight\FileUpload\Throwable\InvalidExtensionException;
-use Delight\FileUpload\Throwable\TempDirectoryNotFoundError;
-use Delight\FileUpload\Throwable\TempFileWriteError;
-use Delight\FileUpload\Throwable\UploadCancelledError;
-use Delight\FileUpload\Throwable\UploadCancelledException;
+use Oihso\FileUpload\Throwable\Error;
+use Oihso\FileUpload\Throwable\FileTooLargeException;
+use Oihso\FileUpload\Throwable\InputNotFoundException;
+use Oihso\FileUpload\Throwable\InputNotSpecifiedError;
+use Oihso\FileUpload\Throwable\InvalidExtensionException;
+use Oihso\FileUpload\Throwable\TempDirectoryNotFoundError;
+use Oihso\FileUpload\Throwable\TempFileWriteError;
+use Oihso\FileUpload\Throwable\UploadCancelledError;
+use Oihso\FileUpload\Throwable\UploadCancelledException;
 
 /** Helper for simple and convenient file uploads */
 final class FileUpload extends AbstractUpload {

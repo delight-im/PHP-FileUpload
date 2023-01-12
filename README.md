@@ -8,10 +8,10 @@ Simple and convenient file uploads — secure by default
 
 ## Installation
 
- 1. Include the library via Composer [[?]](https://github.com/delight-im/Knowledge/blob/master/Composer%20(PHP).md):
+ 1. Include the library via Composer [[?]](https://github.com/oihso/Knowledge/blob/master/Composer%20(PHP).md):
 
     ```
-    $ composer require delight-im/file-upload
+    $ composer require oihso/file-upload
     ```
 
  1. Include the Composer autoloader:
@@ -66,7 +66,7 @@ Simple and convenient file uploads — secure by default
 ### File uploads
 
 ```php
-$upload = new \Delight\FileUpload\FileUpload();
+$upload = new \Oihso\FileUpload\FileUpload();
 $upload->withTargetDirectory('/my-app/users/' . $userId . '/avatars');
 $upload->from('my-input-name');
 
@@ -82,19 +82,19 @@ try {
     // $uploadedFile->getPath()
     // $uploadedFile->getCanonicalPath()
 }
-catch (\Delight\FileUpload\Throwable\InputNotFoundException $e) {
+catch (\Oihso\FileUpload\Throwable\InputNotFoundException $e) {
     // input not found
 }
-catch (\Delight\FileUpload\Throwable\InvalidFilenameException $e) {
+catch (\Oihso\FileUpload\Throwable\InvalidFilenameException $e) {
     // invalid filename
 }
-catch (\Delight\FileUpload\Throwable\InvalidExtensionException $e) {
+catch (\Oihso\FileUpload\Throwable\InvalidExtensionException $e) {
     // invalid extension
 }
-catch (\Delight\FileUpload\Throwable\FileTooLargeException $e) {
+catch (\Oihso\FileUpload\Throwable\FileTooLargeException $e) {
     // file too large
 }
-catch (\Delight\FileUpload\Throwable\UploadCancelledException $e) {
+catch (\Oihso\FileUpload\Throwable\UploadCancelledException $e) {
     // upload cancelled
 }
 ```
@@ -199,7 +199,7 @@ $upload->getSourceFileName();
 ### Base64 uploads
 
 ```php
-$upload = new \Delight\FileUpload\Base64Upload();
+$upload = new \Oihso\FileUpload\Base64Upload();
 $upload->withTargetDirectory('/my-app/users/' . $userId . '/avatars');
 $upload->withData($_POST['my-base64']);
 
@@ -215,19 +215,19 @@ try {
     // $uploadedFile->getPath()
     // $uploadedFile->getCanonicalPath()
 }
-catch (\Delight\FileUpload\Throwable\InputNotFoundException $e) {
+catch (\Oihso\FileUpload\Throwable\InputNotFoundException $e) {
     // input not found
 }
-catch (\Delight\FileUpload\Throwable\InvalidFilenameException $e) {
+catch (\Oihso\FileUpload\Throwable\InvalidFilenameException $e) {
     // invalid filename
 }
-catch (\Delight\FileUpload\Throwable\InvalidExtensionException $e) {
+catch (\Oihso\FileUpload\Throwable\InvalidExtensionException $e) {
     // invalid extension
 }
-catch (\Delight\FileUpload\Throwable\FileTooLargeException $e) {
+catch (\Oihso\FileUpload\Throwable\FileTooLargeException $e) {
     // file too large
 }
-catch (\Delight\FileUpload\Throwable\UploadCancelledException $e) {
+catch (\Oihso\FileUpload\Throwable\UploadCancelledException $e) {
     // upload cancelled
 }
 ```
@@ -312,7 +312,7 @@ $upload->getData();
 ### Data URI uploads
 
 ```php
-$upload = new \Delight\FileUpload\DataUriUpload();
+$upload = new \Oihso\FileUpload\DataUriUpload();
 $upload->withTargetDirectory('/my-app/users/' . $userId . '/avatars');
 $upload->withUri($_POST['my-data-uri']);
 
@@ -328,19 +328,19 @@ try {
     // $uploadedFile->getPath()
     // $uploadedFile->getCanonicalPath()
 }
-catch (\Delight\FileUpload\Throwable\InputNotFoundException $e) {
+catch (\Oihso\FileUpload\Throwable\InputNotFoundException $e) {
     // input not found
 }
-catch (\Delight\FileUpload\Throwable\InvalidFilenameException $e) {
+catch (\Oihso\FileUpload\Throwable\InvalidFilenameException $e) {
     // invalid filename
 }
-catch (\Delight\FileUpload\Throwable\InvalidExtensionException $e) {
+catch (\Oihso\FileUpload\Throwable\InvalidExtensionException $e) {
     // invalid extension
 }
-catch (\Delight\FileUpload\Throwable\FileTooLargeException $e) {
+catch (\Oihso\FileUpload\Throwable\FileTooLargeException $e) {
     // file too large
 }
-catch (\Delight\FileUpload\Throwable\UploadCancelledException $e) {
+catch (\Oihso\FileUpload\Throwable\UploadCancelledException $e) {
     // upload cancelled
 }
 ```
