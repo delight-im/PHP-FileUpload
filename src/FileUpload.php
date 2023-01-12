@@ -1,22 +1,22 @@
 <?php
 
 /*
- * PHP-FileUpload (https://github.com/delight-im/PHP-FileUpload)
- * Copyright (c) delight.im (https://www.delight.im/)
+ * PHP-FileUpload (https://github.com/oihso/PHP-FileUpload)
+  *
  * Licensed under the MIT License (https://opensource.org/licenses/MIT)
  */
 
-namespace Delight\FileUpload;
+namespace Oihso\FileUpload;
 
-use Delight\FileUpload\Throwable\Error;
-use Delight\FileUpload\Throwable\FileTooLargeException;
-use Delight\FileUpload\Throwable\InputNotFoundException;
-use Delight\FileUpload\Throwable\InputNotSpecifiedError;
-use Delight\FileUpload\Throwable\InvalidExtensionException;
-use Delight\FileUpload\Throwable\TempDirectoryNotFoundError;
-use Delight\FileUpload\Throwable\TempFileWriteError;
-use Delight\FileUpload\Throwable\UploadCancelledError;
-use Delight\FileUpload\Throwable\UploadCancelledException;
+use Oihso\FileUpload\Throwable\Error;
+use Oihso\FileUpload\Throwable\FileTooLargeException;
+use Oihso\FileUpload\Throwable\InputNotFoundException;
+use Oihso\FileUpload\Throwable\InputNotSpecifiedError;
+use Oihso\FileUpload\Throwable\InvalidExtensionException;
+use Oihso\FileUpload\Throwable\TempDirectoryNotFoundError;
+use Oihso\FileUpload\Throwable\TempFileWriteError;
+use Oihso\FileUpload\Throwable\UploadCancelledError;
+use Oihso\FileUpload\Throwable\UploadCancelledException;
 
 /** Helper for simple and convenient file uploads */
 final class FileUpload extends AbstractUpload {
@@ -25,6 +25,8 @@ final class FileUpload extends AbstractUpload {
 	private $allowedExtensions;
 	/** @var string|null the name of the input that is the source for the file to be uploaded */
 	private $sourceInputName;
+	/** @var string|null the name of the file that is going to be uploaded */
+	private $sourceFileName;
 
 	public function __construct() {
 		parent::__construct();
@@ -153,6 +155,15 @@ final class FileUpload extends AbstractUpload {
 		return $this->sourceInputName;
 	}
 
+	/**
+	 * Returns the original name of the file that is going to be uploaded
+	 *
+	 * @return string|null
+	 */
+	public function getSourceFileName() {
+		return $this->sourceFileName;
+	}
+
 	public function save() {
 		if (empty($this->sourceInputName)) {
 			throw new InputNotSpecifiedError();
@@ -163,6 +174,7 @@ final class FileUpload extends AbstractUpload {
 		}
 
 		$data = $_FILES[$this->sourceInputName];
+		$this->sourceFileName = $data['name'];
 
 		if ($data['error'] === \UPLOAD_ERR_INI_SIZE || $data['error'] === \UPLOAD_ERR_FORM_SIZE) {
 			throw new FileTooLargeException();

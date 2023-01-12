@@ -1,11 +1,11 @@
 <?php
 
 /*
- * PHP-FileUpload (https://github.com/delight-im/PHP-FileUpload)
- * Copyright (c) delight.im (https://www.delight.im/)
+ * PHP-FileUpload (https://github.com/oihso/PHP-FileUpload)
+  *
  * Licensed under the MIT License (https://opensource.org/licenses/MIT)
  */
 
-namespace Delight\FileUpload\Throwable;
+namespace Oihso\FileUpload\Throwable;
 
 class TargetDirectoryNotSpecifiedError extends Error {}

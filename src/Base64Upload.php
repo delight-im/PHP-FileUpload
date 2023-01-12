@@ -1,17 +1,17 @@
 <?php
 
 /*
- * PHP-FileUpload (https://github.com/delight-im/PHP-FileUpload)
- * Copyright (c) delight.im (https://www.delight.im/)
+ * PHP-FileUpload (https://github.com/oihso/PHP-FileUpload)
+  *
  * Licensed under the MIT License (https://opensource.org/licenses/MIT)
  */
 
-namespace Delight\FileUpload;
+namespace Oihso\FileUpload;
 
-use Delight\FileUpload\Throwable\FileTooLargeException;
-use Delight\FileUpload\Throwable\InputNotFoundException;
-use Delight\FileUpload\Throwable\InputNotSpecifiedError;
-use Delight\FileUpload\Throwable\TargetFileWriteError;
+use Oihso\FileUpload\Throwable\FileTooLargeException;
+use Oihso\FileUpload\Throwable\InputNotFoundException;
+use Oihso\FileUpload\Throwable\InputNotSpecifiedError;
+use Oihso\FileUpload\Throwable\TargetFileWriteError;
 
 /** Helper for simple and convenient uploads of Base64-encoded data */
 final class Base64Upload extends AbstractUpload {
