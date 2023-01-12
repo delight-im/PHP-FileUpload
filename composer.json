@@ -6,7 +6,7 @@
 	},
 	"type": "library",
 	"keywords": [ "upload", "file", "form", "input", "validation", "files" ],
-	"homepage": "https://github.com/Oihso/PHP-FileUpload",
+	"homepage": "https://github.com/Oihso/FileUpload",
 	"license": "MIT",
 	"autoload": {
 		"psr-4": {
